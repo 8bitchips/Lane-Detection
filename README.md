@@ -24,20 +24,14 @@ It’s difficult and time consuming for the computer to compute 3 channels that�
 <h3> An image can be written as a matrix i.e., an array of pixels <h3>
 
 ![image](https://user-images.githubusercontent.com/87309254/179006163-9750ec7a-af0c-4976-a4b3-8ac3e2a91052.png)
-
+ 
 <br> Gradient: Measure of change or brightness over adjacent pixel. <br>
 
-<h3> Strong Gradient : <br>
-Strong Gradient represents a sharp change  </h3>
-
-![image](https://user-images.githubusercontent.com/87309254/179006608-b8edbd04-25b9-4afd-814c-6269f2f45800.png) <br>
-
-<h3> Weak Gradient : <br>
-Shallow gradient represents a shallow change. </h3> 
-
-![image](https://user-images.githubusercontent.com/87309254/179006655-a915e15b-2aec-425f-aaeb-713b4ee8dc96.png) <br> 
-
-
+Strong Gradient                                                   |                              Weak Gradient 
+:----------------------------------------------------------------:|:-------------------------------------------------------------: 
+Strong Gradient represents a sharp change                         |      Shallow gradient represents a shallow change.
+![image](https://user-images.githubusercontent.com/87309254/179006608-b8edbd04-25b9-4afd-814c-6269f2f45800.png) | ![image](https://user-images.githubusercontent.com/87309254/179006655-a915e15b-2aec-425f-aaeb-713b4ee8dc96.png)
+ 
 <h2 >Example </h2>
 
 ![image](https://user-images.githubusercontent.com/87309254/179006693-1b782ad4-9873-4905-bdde-fbecd7084890.png)
@@ -105,10 +99,12 @@ So here we use 50:150 i.e., 1:3 <br>
 <h3> Now to show the image in terms of graph we use matplot.pyplot as plt <br>
 plt.imshow(canny) <br>
 plt.show() </h3> <br>
-
-![image](https://user-images.githubusercontent.com/87309254/179012303-bd7d0484-c61a-406d-abb8-88be7b824447.png)
-![image](https://user-images.githubusercontent.com/87309254/179012322-c84e2c77-15c6-4eb7-b5c9-41bdaf9c3f9c.png)  
-
+ 
+<p>
+<img align="left" src="https://user-images.githubusercontent.com/87309254/179012303-bd7d0484-c61a-406d-abb8-88be7b824447.png" width="400" heigth="150"> 
+<img align="bottom" src="https://user-images.githubusercontent.com/87309254/179012322-c84e2c77-15c6-4eb7-b5c9-41bdaf9c3f9c.png" with="150" heigth="150">
+</p>
+ 
 <br>
 <br>
 
@@ -175,3 +171,44 @@ So, wherever there was white within the region of the polygon, it has remained w
  
 ![image](https://user-images.githubusercontent.com/87309254/179017179-3d22f6a9-f430-4617-99f2-3e4f71b455df.png)
 
+<br> <br> <br>
+ 
+<b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+
+<br>
+ 
+<h2> Hough_lines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 85, np.array([]), min_line_lenght=40, max_line_gap=5) </h2> 
+ 
+<h3> 2 is the bit resolution in pixels <br>
+np.pi/180 = 1 is the degree </h3> <br> 
+ 
+<h3> 1.	This is the output with 20 pixels as the bit resolution and 5 degrees. </h3>
+ 
+![image](https://user-images.githubusercontent.com/87309254/179023202-1b280d72-3f4d-4357-917f-7d698d673a57.png)
+
+<h3> 2.	This is the output with 2 pixels as the bit resolution and 1 degree </h3>
+ 
+![image](https://user-images.githubusercontent.com/87309254/179023227-88610182-4e0b-4631-9205-625eee72b916.png)
+
+
+<h3> 4.  The 4th parameter is the threshold for the optimal number of increments for the accumulator array cell determination.  <br> <br>
+5.  The 5th argument is just a placeholder array, so just create any empty array. <br> <br>
+6.  The 6th argument is the minimum line length to be traced. So, if the traced min_line_lenght is less than 40 it will not be accepted as a relevant line. <br> <br>
+7.  The 7th argument is the max_line_gap, which is the max line gap between segmented lines to be traced and connected instead of them being broken up. <h3> 
+
+ 
+<br> <br>
+In display_lines function: <br>
+The output we get for the lines is a 2D array, but we need is a 1D array <br>
+So, we reshape every line into a 1D array by writing line.reshape(4) <br>
+ 
+![image](https://user-images.githubusercontent.com/87309254/179024271-9ff45d89-6c76-4c8c-a45b-6e204a17d89a.png)
+
+
+cv2.addWeighted(lane_image, 0.8, line_image, 1, 1) <br>
+This adds the 2 images given as parameters. <br>  <br>
+ 
+Since the background of the line_image is black i.e., the array is [0] wherever black <br>
+And adding 0 to any number is that number itself, so the original image doesn’t get altered at all, except the lines drawn is added.  <br>
+
+ 
