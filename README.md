@@ -143,25 +143,26 @@ So instead of having white all over the black mask we will use the edges of the 
 
 <b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
 
-<h2> Bitwise AND </h2>
+<h1> Bitwise AND </h1>
  
 As we discussed earlier, an image is an array of integers. <br>
 The masked image is a complete black image with white color in the polygon specified <br>
-Black has no intensity so it’s 0 and white has max intensity so it’s 1. <br>
-In the other main image [canny()], we have the complete image blacked out and only the edges white and once again here black = 0 and white = 1 <br>
+ 
+<h3> Black has no intensity so it’s 0 and white has max intensity so it’s 1. <br>
+In the other main image [canny()], we have the complete image blacked out and only the edges white and once again here black = 0 and white = 1 </h3> <br>
 
-Here we will combine both the images by using bitwise AND operation!!! <br>
-Bitwise AND <br>
+Here we will combine both the images by using bitwise AND operation!!!
+<h3> Bitwise AND <br>
 0 & 0 = 0 <br>
 0 & 1 = 0 <br>
 1 & 0 = 0 <br>
-1 & 1 = 1 <br>
+1 & 1 = 1 </h3> <br>
 
-So, when we perform bitwise AND on these 2 images wherever there is: <br>
-Black (0) & Black (0) = Black (0) <br>
+So, when we perform bitwise AND on these 2 images wherever there is:
+<h3> Black (0) & Black (0) = Black (0) <br>
 Black (0) & White (1) = Black (0) <br>
 White (1) & Black (0) = Black (0) <br>
-White (1) & White (1) = White (1) <br> 
+White (1) & White (1) = White (1) </h3> <br> 
  
 ![image](https://user-images.githubusercontent.com/87309254/179017098-ecbd3044-c739-456a-9e66-0283a149b09a.png)  <br> <br>
 
@@ -179,9 +180,6 @@ So, wherever there was white within the region of the polygon, it has remained w
  
 <h2> Hough_lines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 85, np.array([]), min_line_lenght=40, max_line_gap=5) </h2> 
  
-<h3> 2 is the bit resolution in pixels <br>
-np.pi/180 = 1 is the degree </h3> <br> 
- 
 <h3> 1.	This is the output with 20 pixels as the bit resolution and 5 degrees. </h3>
  
 ![image](https://user-images.githubusercontent.com/87309254/179023202-1b280d72-3f4d-4357-917f-7d698d673a57.png)
@@ -191,10 +189,13 @@ np.pi/180 = 1 is the degree </h3> <br>
 ![image](https://user-images.githubusercontent.com/87309254/179023227-88610182-4e0b-4631-9205-625eee72b916.png)
 
 
-<h3> 4.  The 4th parameter is the threshold for the optimal number of increments for the accumulator array cell determination.  <br> <br>
-5.  The 5th argument is just a placeholder array, so just create any empty array. <br> <br>
-6.  The 6th argument is the minimum line length to be traced. So, if the traced min_line_lenght is less than 40 it will not be accepted as a relevant line. <br> <br>
-7.  The 7th argument is the max_line_gap, which is the max line gap between segmented lines to be traced and connected instead of them being broken up. <h3> 
+<h3>
+2)  The 2nd Parameter ->  2 is the bit resolution in pixels. <br> <br>
+3)  The 3rd Parameter ->  np.pi/180 = 1 is the degree. <br> <br>
+4)  The 4th parameter is the threshold for the optimal number of increments for the accumulator array cell determination.  <br> <br>
+5)  The 5th argument is just a placeholder array, so just create any empty array. <br> <br>
+6)  The 6th argument is the minimum line length to be traced. So, if the traced min_line_lenght is less than 40 it will not be accepted as a relevant line. <br> <br>
+7)  The 7th argument is the max_line_gap, which is the max line gap between segmented lines to be traced and connected instead of them being broken up. <h3> 
 
  
 <br> <br>
