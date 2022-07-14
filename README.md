@@ -13,6 +13,10 @@ These values from (0, 255) are the array range for each color i.e., 0 for darkes
 
 It’s difficult and time consuming for the computer to compute 3 channels that’s why we convert images to greyscale, so that we can get the array range in just one channel (easier and faster computational purpose).
 
+<b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+ 
+<br>
+
 <h2> Step 1: Edge Detection </h2>
 
 ![image](https://user-images.githubusercontent.com/87309254/179006085-614f3efe-24f4-4e87-a116-10c720e086c9.png)
@@ -41,7 +45,10 @@ Shallow gradient represents a shallow change. </h3>
 <h3> To convert image from RGB to Grayscale using CV2: <br>
 var1 = cv2.cvtCOLOR(img_name, cv2.COLOR_RGB2GRAY) </h3> <br> <br>
 
-
+<b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+ 
+<br>
+ 
 <h2> Step 2: Reduce Noise and Smoothen Image </h2>
 
 Read Kernel Convolution 
@@ -58,6 +65,9 @@ blur = cv2.GaussianBlur(gray, (5, 5), 0) <br>
  
 See in the above picture, the leftmost pic has lot of noise but the noise reduces as we move to the right, this is because of the Gaussian Blur! <br> <br>
 
+ <b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+ 
+<br>
 
 <br> <h2> Step 3: Finding Lanes Lines - canny() </h2>
 
@@ -101,6 +111,10 @@ plt.show() </h3> <br>
 
 <br>
 <br>
+
+<b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+ 
+<br> <br>
  
 <h2> Step 4 : Finding lane Lines - Region of Interest	</h2>
 
@@ -129,6 +143,35 @@ Triangle – region of interest coordinates <br>
 We were learning how to mask and poly fill an image, so that we just want to use the edges in the canny i.e., just the part of the lane we want to use rather than the whole picture or road! <br>
 So instead of having white all over the black mask we will use the edges of the road withing the polygon coordinates. <br> <br>
 
-![image](https://user-images.githubusercontent.com/87309254/179014483-d6ec76eb-6e90-480f-b9a4-f1dbf42c6571.png)
+![image](https://user-images.githubusercontent.com/87309254/179014483-d6ec76eb-6e90-480f-b9a4-f1dbf42c6571.png) <br> <br>
 
+<b> ------------------------------------------------------------------------------------------------------------------------------------------------------------- </b>
+
+<h2> Bitwise AND </h2>
+ 
+As we discussed earlier, an image is an array of integers. <br>
+The masked image is a complete black image with white color in the polygon specified <br>
+Black has no intensity so it’s 0 and white has max intensity so it’s 1. <br>
+In the other main image [canny()], we have the complete image blacked out and only the edges white and once again here black = 0 and white = 1 <br>
+
+Here we will combine both the images by using bitwise AND operation!!! <br>
+Bitwise AND <br>
+0 & 0 = 0 <br>
+0 & 1 = 0 <br>
+1 & 0 = 0 <br>
+1 & 1 = 1 <br>
+
+So, when we perform bitwise AND on these 2 images wherever there is: <br>
+Black (0) & Black (0) = Black (0) <br>
+Black (0) & White (1) = Black (0) <br>
+White (1) & Black (0) = Black (0) <br>
+White (1) & White (1) = White (1) <br> 
+ 
+![image](https://user-images.githubusercontent.com/87309254/179017098-ecbd3044-c739-456a-9e66-0283a149b09a.png)  <br> <br>
+
+<h3> What’s the output…? </h3> 
+<h4> The whole canny() image gets black except the region of the polygon <br>
+So, wherever there was white within the region of the polygon, it has remained white and wherever there was black it has remained as is. </h4> <br>
+ 
+![image](https://user-images.githubusercontent.com/87309254/179017179-3d22f6a9-f430-4617-99f2-3e4f71b455df.png)
 
