@@ -1,10 +1,6 @@
 # Lane-Detection
 Lane Detection using Hough Transform and Canny <br> <br>
 
-
-https://www.youtube.com/watch?v=eLTLtUVuuy4&list=PLerVuzMDG1PlXrcDjGNU8tU_O9dmOW2FM&index=9 <br><br>
-
-
 <h1> Lane Detection </h1>
 Let’s start with colors and they’re channels.
 Normal colored images have RGB, that’s why they’re colored. So, in total there are 3 channels R, G, B ranging from (0, 255).
